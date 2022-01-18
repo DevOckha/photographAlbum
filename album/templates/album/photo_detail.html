@@ -1,0 +1,23 @@
+{% extends 'album/base.html' %}
+{% load static %}
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ photo.thumbnail.url }}" alt="">
+                    <div class="card-body">
+                        <p class="card-text">{{photo.description}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{% url 'photo_edit' photo.pk  %}">Edit</a></button>
+                            </div>
+                            <small class="text-muted">{{photo.created|time:"h:i a"}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock content %}

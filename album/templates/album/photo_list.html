@@ -1,0 +1,63 @@
+{% extends 'album/base.html' %}
+{% load static %}
+{% block title %}Album{% endblock title %}
+
+{% block content %}
+
+<main>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                
+            {% for photo in photos  %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                      {% if request.user == profile.username %}
+                        <img src="{{ photo.thumbnail.url }}" alt="">
+                        <div class="card-body">
+                            <p class="card-text">{{photo.description|truncatechars:15}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'photo_detail' photo.pk %}">View</a></button>
+                                      <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{% url 'photo_edit' photo.pk  %}">Edit</a></button>
+                                      <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{% url 'photo_delete' photo.pk  %}">Delete</a></button>
+                                    </div>
+                                <small class="text-muted">{{photo.created|time:"h:i a"}}</small>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+</main>
+
+
+{% endblock content %}
+
+
+<div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">hi i am yakup  </p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">Follow on Twitter</a></li>
+            <li><a href="#" class="text-white">Like on Facebook</a></li>
+            <li><a href="#" class="text-white">Email me</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>

@@ -1,0 +1,15 @@
+{% extends 'album/base.html' %}
+{% load static %}
+{% block title %}Add Photo{% endblock title %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+
+{% endblock content %}

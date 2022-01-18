@@ -1,0 +1,15 @@
+{% extends 'album/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-container">
+	<form method="POST" action="">
+		{% csrf_token %}
+
+		<p>Are you sure you want to delete {{photo}}?</p>
+		<a class="btn btn-primary" href="{% url 'list_photos' %}">&laquo Back to Photos</a>
+		<input class="btn btn-danger" type="submit" value="Confirm">
+	</form>
+</div>
+
+{% endblock content %}
